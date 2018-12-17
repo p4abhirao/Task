@@ -103,10 +103,15 @@ namespace WebApi.Helper
 		public Boolean TaskDelete(int id)
 		{
 			Boolean bDel = true;
-
-			bDel = BLLTask.Instance.TaskDelete(id);
-
-			return bDel;
+            try
+            {
+                bDel = BLLTask.Instance.TaskDelete(id);
+            }
+            catch (Exception ex)
+            {
+                BLL.ErrorLog.WriteLog("Service", "TaskSave", ex, "Error");
+            }
+            return bDel;
 		}
 	}
 }

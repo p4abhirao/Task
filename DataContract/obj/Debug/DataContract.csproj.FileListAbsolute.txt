@@ -22,3 +22,15 @@ C:\Abhishek\TaskApplication\DataContract\obj\Debug\DataContract.csproj.CoreCompi
 C:\Abhishek\TaskApplication\DataContract\obj\Debug\DataContract.csproj.CopyComplete
 C:\Abhishek\TaskApplication\DataContract\obj\Debug\DataContract.dll
 C:\Abhishek\TaskApplication\DataContract\obj\Debug\DataContract.pdb
+C:\Task\DataContract\bin\Debug\DataContract.dll.config
+C:\Task\DataContract\bin\Debug\DataContract.dll
+C:\Task\DataContract\bin\Debug\DataContract.pdb
+C:\Task\DataContract\bin\Debug\EntityFramework.dll
+C:\Task\DataContract\bin\Debug\EntityFramework.SqlServer.dll
+C:\Task\DataContract\bin\Debug\EntityFramework.xml
+C:\Task\DataContract\bin\Debug\EntityFramework.SqlServer.xml
+C:\Task\DataContract\obj\Debug\DataContract.csprojAssemblyReference.cache
+C:\Task\DataContract\obj\Debug\DataContract.csproj.CoreCompileInputs.cache
+C:\Task\DataContract\obj\Debug\DataContract.csproj.CopyComplete
+C:\Task\DataContract\obj\Debug\DataContract.dll
+C:\Task\DataContract\obj\Debug\DataContract.pdb

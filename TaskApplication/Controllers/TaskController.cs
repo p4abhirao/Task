@@ -7,55 +7,59 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Runtime.Serialization.Json;
+using BLL;
 using TaskApplication.Models;
 
 namespace TaskApplication.Controllers
 {
-	public class TaskController : Controller
-	{
-		// GET: Task
-		public ActionResult Index()
-		{
+    public class TaskController : Controller
+    {
+        public object BLL { get; private set; }
 
-			return View();
-		}
+        // GET: Task
+        public ActionResult Index()
+        {
 
-		public ActionResult TaskCreate()
-		{
-			try
-			{
-				List<SelectListItem> PriorityList = new List<SelectListItem>();
+            return View();
+        }
 
-				PriorityList.Add(new SelectListItem { Text = "P1", Value = "1" });
-				PriorityList.Add(new SelectListItem { Text = "P2", Value = "2" });
-				PriorityList.Add(new SelectListItem { Text = "P3", Value = "3" });
-				ViewData["PriorityList"] = (IEnumerable<SelectListItem>)PriorityList;
-			}
-			catch (Exception ex)
-			{
+        public ActionResult TaskCreate()
+        {
+            try
+            {
+                List<SelectListItem> PriorityList = new List<SelectListItem>();
 
-				throw ex;
-			}
-			return View();
-		}
+                PriorityList.Add(new SelectListItem { Text = "P1", Value = "1" });
+                PriorityList.Add(new SelectListItem { Text = "P2", Value = "2" });
+                PriorityList.Add(new SelectListItem { Text = "P3", Value = "3" });
+                ViewData["PriorityList"] = (IEnumerable<SelectListItem>)PriorityList;
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.WriteLog("Service", "TaskCreate", ex, "Error");
+            }
+            return View();
+        }
 
         /// <summary>
         /// Get Task list
         /// </summary>
         /// <returns></returns>
 		public ActionResult TaskList()
-		{
+        {
             string result = string.Empty, uri = "", sMethod = "POST";
             uri = System.Configuration.ConfigurationManager.AppSettings["APIUrl"] + "api/Task/TaskList?sText=0";
             var lTask = new List<Task>();
 
-            //request object
-            HttpWebRequest req = WebRequest.Create(uri) as HttpWebRequest;
-            req.KeepAlive = false;
-            req.Method = sMethod;
-            req.ContentType = "application/json";
+            try
+            {
 
-           
+                //request object
+                HttpWebRequest req = WebRequest.Create(uri) as HttpWebRequest;
+                req.KeepAlive = false;
+                req.Method = sMethod;
+                req.ContentType = "application/json";
+                
                 HttpWebResponse httpResponse = (HttpWebResponse)req.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
@@ -72,8 +76,12 @@ namespace TaskApplication.Controllers
 
                     httpResponse.Close();
                 }
-                
-			return View(lTask);
-		}
-	}
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.WriteLog("Service", "TaskList", ex, "Error");
+            }
+            return View(lTask);
+        }
+    }
 }
